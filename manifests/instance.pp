@@ -149,12 +149,9 @@ define lumberjack::instance(
 
   }
 
-  file { "/etc/lumberjack":
+  file { "${lumberjack::common::ssl_path}/${name}":
     ensure => directory,
-  }
-
-  file { "/etc/lumberjack/${name}":
-    ensure => directory,
+    require => Class['lumberjack::common'],
   }
 
   # Setup certificate files
